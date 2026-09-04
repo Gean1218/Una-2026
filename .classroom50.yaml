@@ -1,0 +1,13 @@
+schema: "classroom50/repo-config/v1"
+classroom: "psg-si-2026-2-p3-tiapn-9170100"
+assignment: "psg-si-2026-2-p3-tiapn-917010"
+secret: "srb2mtfr"
+owner:
+  username: "Gean1218"
+  id: 195384182
+  accepted_at: "2026-09-04T22:17:17Z"
+source:
+  owner: "ICEI-PUC-Minas-PBR-SI"
+  owner_id: 82533810
+  repo: "TIAPN-Template"
+  branch: "main"
