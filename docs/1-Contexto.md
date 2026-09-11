@@ -10,13 +10,19 @@ Essa divergência ocorre principalmente porque grande parte dos aplicativos disp
 Como consequência, a maioria opta por soluções mais práticas, como caderno de anotações ou o próprio WhatsApp Business, mesmo sabendo que isso resulta em perda de informações, falta de organização financeira e dificuldade de enxergar o desempenho real do negócio.
 
 ## Objetivos
+## Objetivo Principal
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+Desenvolver um aplicativo de gestão financeira e de estoque para MEIs, com baixa complexidade técnica, integrado a um bot de WhatsApp Business que envie relatórios automáticos e proativos sobre a saúde do negócio, reduzindo a desorganização financeira, a falta de controle de estoque e a sobrecarga mental causada pelo registro manual. 
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+## Objetivos Específicos
+
+* Desenvolver uma interface simples e de baixa curva de aprendizado, acessível a MEIs sem conhecimento técnico. 
+* Permitir o registro rápido de entradas e saídas (vendas e compras), com controle automático do estoque. 
+* Calcular automaticamente indicadores financeiros como lucro, faturamento e produtos parados. 
+* Enviar relatórios semanais via WhatsApp, sem exigir que o usuário abra o aplicativo. 
+* Gerar alertas proativos sobre estoque baixo, produtos sem giro e queda no desempenho de vendas. 
+
+
 
 ## Justificativa
 
