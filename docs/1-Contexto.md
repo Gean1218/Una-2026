@@ -3,16 +3,11 @@
 Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
+Segundo pesquisa do Sebrae (2025), 98% dos MEIs e pequenos empreendedores brasileiros têm acesso à internet, mas apenas 47% utilizam algum aplicativo ou software para auxiliar na gestão do negócio. 
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+Essa divergência ocorre principalmente porque grande parte dos aplicativos disponíveis no mercado apresenta alta complexidade técnica, sendo pensados para médias e grandes empresas e não para a realidade de um MEI que opera sozinho, sem tempo nem conhecimento técnico para configurar sistemas robustos. 
 
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Como consequência, a maioria opta por soluções mais práticas, como caderno de anotações ou o próprio WhatsApp Business, mesmo sabendo que isso resulta em perda de informações, falta de organização financeira e dificuldade de enxergar o desempenho real do negócio.
 
 ## Objetivos
 
@@ -25,12 +20,11 @@ Apresente também alguns (pelo menos 2) objetivos específicos dependendo de ond
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+A escolha desse tema se justifica pelo grande contraste identificado na pesquisa do Sebrae (2025): embora 98% dos MEIs tenham acesso à internet, apenas 47% utilizam algum aplicativo para gerir o próprio negócio. Esse dado evidencia que a tecnologia está disponível, mas não está sendo adotada e as observações de campo e entrevistas realizadas apontam o motivo: os aplicativos existentes são, em sua maioria, complexos demais e pensados para empresas de médio e grande porte, não para a realidade de quem opera sozinho, sem tempo e sem conhecimento técnico. 
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+A partir das três dores identificadas, desorganização financeira, falta de controle de estoque e sobrecarga mental com registro manual, justifica-se o desenvolvimento de uma solução que não apenas digitalize a gestão, mas que elimine o esforço de lembrar de gerenciar. A escolha do WhatsApp Business como canal principal se justifica por ser a ferramenta que o MEI já usa diariamente: diferente de um aplicativo dedicado, que tende a ser esquecido, o bot leva a informação até o empreendedor, sem exigir que ele vá até ela. 
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Dessa forma, o projeto se justifica não apenas pela existência de uma dor real e validada, mas por propor um caminho de adoção mais natural, reduzindo a barreira técnica que impede boa parte dos pequenos negócios brasileiros de sair do caderno ou da “memória” para uma gestão real. 
 
 ## Público-Alvo
 
