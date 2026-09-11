@@ -1,8 +1,8 @@
-# TÍTULO DO PROJETO
+# Aplicativo de Gestão Financeira e de Estoque para MEIs
 
-`CURSO`
+`Sistemas de Informação`
 
-`DISCIPLINA`
+`Aplicações para Processos de Negócios`
 
 `SEMESTRE`
 
