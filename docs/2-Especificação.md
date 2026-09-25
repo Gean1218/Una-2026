@@ -8,19 +8,30 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+# Persona 1 — Carlos Eduardo (dono de barbearia)
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+Carlos tem 34 anos e é MEI há 3 anos, dono de uma barbearia de bairro onde atende sozinho.
+Trabalha das 9h às 20h, sem tempo para "sentar e organizar planilha". Anota os cortes do dia em um
+caderno e controla os produtos (pomadas, lâminas, toalhas) de memória. Já perdeu vendas por falta
+de produto em estoque e não sabe dizer, com certeza, quanto lucrou no mês passado. Usa o
+WhatsApp o dia inteiro para marcar horários com clientes, mas nunca usou nenhum aplicativo de
+gestão porque "são complicados demais para quem trabalha sozinho".
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+# Persona 2 — Marcela Silva (manicure autônoma
+
+Marcela tem 29 anos, é manicure MEI e atende em um salão compartilhado e também em domicílio.
+Compra esmaltes, lixas e produtos descartáveis com frequência, mas não tem noção clara de quanto
+gasta em material por mês nem de qual produto está "parado". Registra os agendamentos no
+WhatsApp Business, mas o controle financeiro é feito, quando é feito, em anotações soltas no celular.
+Se sente sobrecarregada tentando lembrar de anotar tudo entre um atendimento e outro.
+
+# Persona 3 — Sebastião Almeida (dono de pequeno mercado)
+
+Sebastião tem 52 anos, é MEI há 10 anos e administra um pequeno mercado de bairro com a ajuda
+ocasional da esposa. Tem baixa familiaridade com tecnologia e desconfia de aplicativos "cheios de
+telas". Sofre com produtos parados na prateleira e com rupturas de itens que vendem bem, pois não
+tem nenhum sistema de controle de estoque — apenas a experiência para "sentir" o que está faltando.
+Já tentou usar uma planilha, mas abandonou por achar trabalhoso demais no dia a dia.
 
 ## Histórias de Usuários
 
