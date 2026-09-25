@@ -1,10 +1,22 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="01-Documentação de Contexto.md"> Documentação de Contexto</a></span>
+Esta parte do documento apresenta a especificação do problema e da solução sob a perspectiva do
+usuário, a partir dos dados de contextualização levantados na Sprint 1 (observações de campo em
+barbearias, manicures e pequenos mercados, entrevistas e pesquisa Sebrae 2025). Foram utilizadas
+as seguintes técnicas:
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
+• Personas, para representar de forma concreta os perfis de MEI identificados na pesquisa;
 
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+• Histórias de Usuário, para traduzir as dores e objetivos das personas em necessidades funcionais do sistema, agrupadas por contexto;
+
+• Levantamento de Requisitos Funcionais (RF) e Não Funcionais (RNF), derivados diretamente
+das histórias de usuário e dos 5 processos de negócio já mapeados na Sprint 1;
+
+• Técnica de priorização MoSCoW, adaptada
+para as categorias ALTA, MÉDIA e BAIXA, usada para classificar cada requisito conforme seu impacto
+direto nas três dores centrais do projeto;
+
+• Restrições do projeto, delimitando o escopo viável dentro do contexto acadêmico e do público-alvo.
 
 ## Personas
 
@@ -37,54 +49,51 @@ Já tentou usar uma planilha, mas abandonou por achar trabalhoso demais no dia a
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
+|EU COMO... | QUERO/PRECISO ...  |PARA ...                  |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
-
-
+|MEI  | cadastrar meus produtos/materiais com nome, categoria, preço de custo, preço devenda e quantidade inicial           | ter meu estoque organizado desde o início               |
+|MEI       | registrar uma venda em poucos segundos                 | não abandonar o registro no meio da correria do dia |
+|MEI       | que o estoque seja atualizado automaticamente após uma venda                 | não precisar contar os produtos manualmente |
+|MEI       | registrar a compra/reposição de produtos vindos de um fornecedor                 | manter meu estoque sempre atualizado |
+|MEI       | que o sistema calcule automaticamente o lucro de cada venda                 | saber se estou lucrando sem precisar fazer conta |
+|MEI       | receber um relatório semanal automático pelo WhatsApp                 | saber meu desempenho sem precisar abrir um aplicativo |
+|MEI sem conhecimento técnico       | cadastrar um produto de forma simples e rápida                 | não perder tempo nem desistir do sistema |
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+Os requisitos foram priorizados segundo o critério MoSCoW: requisitos que atacam diretamente uma
+das três dores centrais (desorganização financeira, falta de controle de estoque, sobrecarga mental)
+e/ou viabilizam a proposta de valor central ("relatório proativo sem abrir o app") foram classificados
+como ALTA; requisitos que agregam valor mas não são indispensáveis ao MVP foram classificados
+como MÉDIA; e requisitos de conveniência, adiáveis para versões futuras, como BAIXA.
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir o cadastro de produtos/materiais (nome, categoria, preço de custo,preço de venda, quantidade inicial) | ALTA | 
+|RF-002| Permitir o registro de vendas, com baixa automática no estoque e cálculo do lucro da operação   | ALTA |
+|RF-003| Permitir o registro de compras/reposição de produtos junto a fornecedores, atualizando o estoque   | ALTA |
+|RF-004| Calcular automaticamente indicadores financeiros (lucro, faturamento, produtos parados)   | ALTA |
+|RF-005| Gerar e enviar automaticamente um relatório semanal consolidado via WhatsAppo   | ALTA |
+|RF-006| Emitir alertas proativos de estoque crítico/baixo   | ALTA |
+|RF-007| Emitir alertas sobre produtos parados/sem giro   | MÉDIA |
+|RF-008| Emitir alertas sobre quedas relevantes no desempenho de vendas   | MÉDIA |
+|RF-009| Permitir a consulta do estoque atual diretamente pelo WhatsApp   | MÉDIA |
+|RF-0010| Permitir o cadastro de fornecedores associados aos produtos   | BAIXA |
+
+
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|RNF-001| A interface deve ser simples, intuitiva e de baixa curva de aprendizado, acessível a MEIs sem conhecimento técnico (usabilidade) | ALTA | 
+|RNF-002| Os relatórios e alertas devem ser entregues via WhatsApp Business, sem exigir que o usuário abra um aplicativo separado (interoperabilidade) |  ALTA |
+|RNF-003| O registro de uma venda ou compra deve poder ser concluído em poucos segundos (usabilidade/desempenho) |  ALTA | 
+|RNF-004| O sistema deve ser responsivo, funcionando corretamente em dispositivos móveis |  MÉDIA | 
+|RNF-005| Os dados financeiros e de estoque do MEI devem ser armazenados de forma segura (segurança) |  MÉDIA | 
+|RNF-006| O sistema deve processar as requisições do usuário em no máximo 3 segundos (desempenho) |  BAIXA | 
 
 ## Restrições
 
@@ -93,7 +102,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|02| Não pode ser desenvolvido um módulo de backend, conforme diretriz do trabalho interdisciplinar        |
+|03| O canal principal de comunicação com o usuário deve ser o WhatsApp Business, já utilizado no dia a dia do MEI        |
+|04| A solução deve manter baixa complexidade técnica, sendo utilizável por empreendedores sem conhecimento em tecnologia        |
+|05| O escopo do MVP deve se restringir às três dores centrais identificadas na pesquisa (financeiro, estoque, sobrecarga mental de registro)        |
+
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
