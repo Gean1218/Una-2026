@@ -8,7 +8,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-# Persona 1 — Carlos Eduardo (dono de barbearia)
+## Persona 1 — Carlos Eduardo (dono de barbearia)
 
 Carlos tem 34 anos e é MEI há 3 anos, dono de uma barbearia de bairro onde atende sozinho.
 Trabalha das 9h às 20h, sem tempo para "sentar e organizar planilha". Anota os cortes do dia em um
@@ -17,7 +17,7 @@ de produto em estoque e não sabe dizer, com certeza, quanto lucrou no mês pass
 WhatsApp o dia inteiro para marcar horários com clientes, mas nunca usou nenhum aplicativo de
 gestão porque "são complicados demais para quem trabalha sozinho".
 
-# Persona 2 — Marcela Silva (manicure autônoma
+## Persona 2 — Marcela Silva (manicure autônoma
 
 Marcela tem 29 anos, é manicure MEI e atende em um salão compartilhado e também em domicílio.
 Compra esmaltes, lixas e produtos descartáveis com frequência, mas não tem noção clara de quanto
@@ -25,7 +25,7 @@ gasta em material por mês nem de qual produto está "parado". Registra os agend
 WhatsApp Business, mas o controle financeiro é feito, quando é feito, em anotações soltas no celular.
 Se sente sobrecarregada tentando lembrar de anotar tudo entre um atendimento e outro.
 
-# Persona 3 — Sebastião Almeida (dono de pequeno mercado)
+## Persona 3 — Sebastião Almeida (dono de pequeno mercado)
 
 Sebastião tem 52 anos, é MEI há 10 anos e administra um pequeno mercado de bairro com a ajuda
 ocasional da esposa. Tem baixa familiaridade com tecnologia e desconfia de aplicativos "cheios de
