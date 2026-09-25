@@ -1,10 +1,10 @@
-# Aplicativo de Gestão Financeira e de Estoque para MEIs
+# Gestão Inteligente
 
 `Sistemas de Informação`
 
 `Aplicações para Processos de Negócios`
 
-`SEMESTRE`
+`2º Semestre`
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
 
