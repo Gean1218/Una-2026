@@ -107,9 +107,3 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |04| A solução deve manter baixa complexidade técnica, sendo utilizável por empreendedores sem conhecimento em tecnologia        |
 |05| O escopo do MVP deve se restringir às três dores centrais identificadas na pesquisa (financeiro, estoque, sobrecarga mental de registro)        |
 
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
