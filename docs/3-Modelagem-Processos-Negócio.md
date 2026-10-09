@@ -36,16 +36,16 @@ Entradas, saídas, participantes e produtos de informação
 #### Participantes do processos
 Os participantes identificados no levantamento são:
 
-MEI/empreendedor: usuário principal, responsável por cadastrar produtos, registrar vendas e compras e acompanhar as informações do negócio.
+ - MEI/empreendedor: usuário principal, responsável por cadastrar produtos, registrar vendas e compras e acompanhar as informações do negócio.
 
-Cliente final: participa das operações comerciais ao realizar compras, gerando os dados necessários para o registro das vendas.
+ - Cliente final: participa das operações comerciais ao realizar compras, gerando os dados necessários para o registro das vendas.
 
-Fornecedor: fornece produtos e materiais adquiridos pelo MEI, originando as informações de entrada e reposição de estoque.
+ - Fornecedor: fornece produtos e materiais adquiridos pelo MEI, originando as informações de entrada e reposição de estoque.
 
-Aplicativo/sistema: organiza os dados registrados, atualiza o estoque, calcula indicadores financeiros e identifica situações que exigem atenção.
+ -Aplicativo/sistema: organiza os dados registrados, atualiza o estoque, calcula indicadores financeiros e identifica situações que exigem atenção.
 
-Bot de WhatsApp Business: atua como canal de comunicação, enviando relatórios semanais e alertas proativos ao empreendedor.
-Os processos produzem informações que precisam ser armazenadas e relacionadas para permitir o funcionamento integrado da solução. Entre os principais produtos de informação estão os cadastros de produtos, os registros de vendas e compras, os saldos de estoque, os indicadores financeiros, os relatórios semanais e as notificações.
+ -Bot de WhatsApp Business: atua como canal de comunicação, enviando relatórios semanais e alertas proativos ao empreendedor.
+  Os processos produzem informações que precisam ser armazenadas e relacionadas para permitir o funcionamento integrado da solução. Entre os principais produtos     de informação estão os cadastros de produtos, os registros de vendas e compras, os saldos de estoque, os indicadores financeiros, os relatórios semanais e as      notificações.
 
 #### Produtos de Informação e Relação com Arquitetura de softaware
 
