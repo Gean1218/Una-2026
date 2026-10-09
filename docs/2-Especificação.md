@@ -29,7 +29,7 @@ de produto em estoque e não sabe dizer, com certeza, quanto lucrou no mês pass
 WhatsApp o dia inteiro para marcar horários com clientes, mas nunca usou nenhum aplicativo de
 gestão porque "são complicados demais para quem trabalha sozinho".
 
-## Persona 2 — Marcela Silva (manicure autônoma
+## Persona 2 — Marcela Silva (manicure autônoma)
 
 Marcela tem 29 anos, é manicure MEI e atende em um salão compartilhado e também em domicílio.
 Compra esmaltes, lixas e produtos descartáveis com frequência, mas não tem noção clara de quanto
@@ -68,32 +68,32 @@ como ALTA; requisitos que agregam valor mas não são indispensáveis ao MVP for
 como MÉDIA; e requisitos de conveniência, adiáveis para versões futuras, como BAIXA.
 
 ### Requisitos Funcionais
-
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir o cadastro de produtos/materiais (nome, categoria, preço de custo,preço de venda, quantidade inicial) | ALTA | 
-|RF-002| Permitir o registro de vendas, com baixa automática no estoque e cálculo do lucro da operação   | ALTA |
-|RF-003| Permitir o registro de compras/reposição de produtos junto a fornecedores, atualizando o estoque   | ALTA |
-|RF-004| Calcular automaticamente indicadores financeiros (lucro, faturamento, produtos parados)   | ALTA |
-|RF-005| Gerar e enviar automaticamente um relatório semanal consolidado via WhatsAppo   | ALTA |
-|RF-006| Emitir alertas proativos de estoque crítico/baixo   | ALTA |
-|RF-007| Emitir alertas sobre produtos parados/sem giro   | MÉDIA |
-|RF-008| Emitir alertas sobre quedas relevantes no desempenho de vendas   | MÉDIA |
-|RF-009| Permitir a consulta do estoque atual diretamente pelo WhatsApp   | MÉDIA |
-|RF-0010| Permitir o cadastro de fornecedores associados aos produtos   | BAIXA |
+| ID | Descrição do requisito | Prioridade |
+|---|---|---|
+| RF-001 | Permitir o cadastro de produtos e materiais, com nome, categoria, preço de custo, preço de venda e quantidade inicial. | ALTA |
+| RF-002 | Permitir o registro de vendas, com baixa automática no estoque e cálculo do lucro da operação. | ALTA |
+| RF-003 | Permitir o registro de compras e reposições de produtos junto a fornecedores, atualizando o estoque automaticamente. | ALTA |
+| RF-004 | Calcular automaticamente indicadores financeiros, como lucro e faturamento, e identificar produtos parados. | ALTA |
+| RF-005 | Gerar e enviar automaticamente um relatório semanal consolidado via WhatsApp Business, apresentando informações financeiras e de estoque. | ALTA |
+| RF-006 | Emitir alertas proativos quando os produtos atingirem níveis críticos ou baixos de estoque. | ALTA |
+| RF-007 | Emitir alertas sobre produtos parados ou sem movimentação no estoque. | MÉDIA |
+| RF-008 | Emitir alertas sobre quedas relevantes no desempenho das vendas. | MÉDIA |
+| RF-009 | Permitir a consulta do estoque atual diretamente pelo WhatsApp Business. | MÉDIA |
+| RF-010 | Permitir o cadastro de fornecedores associados aos produtos. | BAIXA |
 
 
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| A interface deve ser simples, intuitiva e de baixa curva de aprendizado, acessível a MEIs sem conhecimento técnico (usabilidade) | ALTA | 
-|RNF-002| Os relatórios e alertas devem ser entregues via WhatsApp Business, sem exigir que o usuário abra um aplicativo separado (interoperabilidade) |  ALTA |
-|RNF-003| O registro de uma venda ou compra deve poder ser concluído em poucos segundos (usabilidade/desempenho) |  ALTA | 
-|RNF-004| O sistema deve ser responsivo, funcionando corretamente em dispositivos móveis |  MÉDIA | 
-|RNF-005| Os dados financeiros e de estoque do MEI devem ser armazenados de forma segura (segurança) |  MÉDIA | 
-|RNF-006| O sistema deve processar as requisições do usuário em no máximo 3 segundos (desempenho) |  BAIXA | 
+| ID | Descrição do requisito | Prioridade |
+|---|---|---|
+| RNF-001 | A interface deve ser simples, intuitiva e acessível a MEIs com pouca familiaridade com tecnologia, exigindo uma baixa curva de aprendizado. | ALTA |
+| RNF-002 | O sistema deve permitir a integração com o WhatsApp Business para o envio de relatórios e alertas, reduzindo a necessidade de acessar outra aplicação. | ALTA |
+| RNF-003 | O registro de vendas e compras deve ser rápido, permitindo concluir cada operação em poucos segundos. | ALTA |
+| RNF-004 | O sistema deve apresentar uma interface responsiva, adaptada a dispositivos móveis e computadores. | MÉDIA |
+| RNF-005 | O sistema deve proteger os dados pessoais, financeiros e de estoque dos usuários contra acessos não autorizados. | ALTA |
+| RNF-006 | O sistema deve manter a estabilidade durante as operações de cadastro, venda, atualização de estoque e geração de relatórios, evitando inconsistências nos dados. | ALTA |
+| RNF-007 | A solução deve permitir a ampliação futura da quantidade de usuários, produtos e registros sem exigir uma reformulação completa de sua estrutura. | MÉDIA |
 
 ## Restrições
 
