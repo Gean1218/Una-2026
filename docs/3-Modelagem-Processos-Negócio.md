@@ -92,10 +92,10 @@ Apesar dos benefícios, a solução tem limites que precisam ser considerados no
 
 ### 3.3. Modelagem dos processos
 
-[PROCESSO 1 - Nome do Processo](./processos/processo-1-nome-do-processo.md "Detalhamento do Processo 1.")
+![PROCESSO 1 - Cadastro de Produtos e Materiais](/docs/images/BPMN_%20Cadastro%20de%20Produtos%20e%20Materiais%20(to-be)%20-%20Quadro%20branco%20-%20Google%20Chrome%2009_10_2026%2017_04_17.png)
 
-[PROCESSO 2 - Nome do Processo](./processos/processo-2-nome-do-processo.md "Detalhamento do Processo 2.")
+![PROCESSO 2 - Registro de compra](/docs/images/Registro%20de%20compras.png)
 
-[PROCESSO 3 - Nome do Processo](./processos/processo-3-nome-do-processo.md "Detalhamento do Processo 3.")
+![PROCESSO 3 - Registro de Vendas](/docs/images/Registro%20de%20vendas.png)
 
-[PROCESSO 4 - Nome do Processo](./processos/processo-4-nome-do-processo.md "Detalhamento do Processo 4.")
+![PROCESSO 4 - Relatorio Semanl via WhatsApp](/docs/images/relatorio%20semanal%20via%20whatsApp.png)
