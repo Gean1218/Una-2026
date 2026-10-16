@@ -27,6 +27,7 @@ O cadastro poderá ser realizado por dois canais: a interface do aplicativo de g
 
 O MEI decide cadastrar um novo produto ou material e inicia a operação pelo aplicativo ou pelo WhatsApp Business.
 
+
 #### Tarefas do processo
 
 1. Escolher o canal de cadastro.
@@ -43,6 +44,9 @@ O MEI decide cadastrar um novo produto ou material e inicia a operação pelo ap
 O produto é registrado com sucesso e fica disponível para consulta no aplicativo e utilização nos processos seguintes.
 
 #### Produto final
+
+Produto ou material cadastrado, contendo nome, categoria, preço de custo, preço de venda e quantidade inicial em estoque.
+
 
 Produto ou material cadastrado, contendo nome, categoria, preço de custo, preço de venda e quantidade inicial em estoque.
 #### 3.3.1.1 Modelagem BPMN
