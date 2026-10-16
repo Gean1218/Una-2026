@@ -5,97 +5,108 @@
 > - [Modelagem de Processos AS-IS x TO-BE](https://dheka.com.br/modelagem-as-is-to-be/)
 > - [20 Dicas Práticas de Modelagem de Processos](https://dheka.com.br/20-dicas-praticas-de-modelagem-de-processos/)
 
-### 3.1. Modelagem da situação atual (Modelagem AS IS)
+markdown
+### 3.3. Processo 1 – Cadastro de Produtos e Materiais
 
-O projeto propõe o desenvolvimento de um aplicativo de gestão financeira e de estoque para Microempreendedores Individuais (MEIs), integrado ao WhatsApp Business para o envio automático de relatórios e alertas. A solução busca simplificar o controle das operações diárias, reduzir a desorganização financeira e evitar a perda de informações causada por registros manuais.
+#### Descrição do processo
 
-Os processos do negócio foram identificados com base nas observações realizadas em barbearias, manicures e pequenos mercados, nas entrevistas com empreendedores e nos requisitos levantados pelo grupo. Para compreender o funcionamento da solução, os processos foram classificados em primários, de suporte e gerenciais, conforme sua finalidade no atendimento às necessidades do empreendedor.
+O processo de cadastro de produtos e materiais tem como objetivo permitir que o Microempreendedor Individual (MEI) registre os produtos comercializados e os materiais utilizados em seu negócio, mantendo as informações necessárias para o controle de estoque e para os cálculos financeiros realizados pelo sistema.
 
-| Processo | Classificação | Descrição |
-|---|---|---|
-| Cadastro de produtos | Suporte | Permite cadastrar produtos e materiais, informando nome, categoria, preço de custo, preço de venda e quantidade inicial, estabelecendo a base para o controle do estoque. |
-| Registro de vendas | Primário | Registra as vendas realizadas pelo MEI, atualiza automaticamente as quantidades em estoque e calcula o lucro de cada operação. |
-| Registro de compras e reposição | Primário | Registra a aquisição de produtos e materiais junto aos fornecedores, atualizando o estoque disponível. |
-| Geração de relatório semanal via WhatsApp | Gerencial | Consolida as informações da semana, incluindo vendas, faturamento, lucro e situação do estoque, enviando os resultados ao empreendedor pelo WhatsApp Business. |
-| Alertas e notificações proativas | Gerencial | Identifica situações que exigem atenção, como estoque baixo, produtos sem movimentação e quedas relevantes no desempenho das vendas, notificando o empreendedor. |
+O cadastro poderá ser realizado por dois canais: a interface do aplicativo de gestão ou o bot integrado ao WhatsApp Business. Essa alternativa busca reduzir o esforço do empreendedor, permitindo que ele escolha o canal mais conveniente para sua rotina, sem precisar necessariamente abrir o aplicativo para cadastrar um produto.
 
-####  Descrição macro dos processos
+**Onde acontece:** no aplicativo de gestão ou na conversa com o bot do WhatsApp Business. A validação e o registro das informações ocorrem por meio dos mecanismos utilizados pela solução.
 
-Os processos estão relacionados entre si. O cadastro de produtos estabelece os dados iniciais necessários para controlar o estoque. A partir desse cadastro, o empreendedor registra as vendas e as compras, permitindo que o sistema mantenha as quantidades atualizadas e reúna informações financeiras. Com base nesses registros, a solução calcula indicadores, identifica situações que exigem atenção e envia relatórios e alertas pelo WhatsApp Business.
+#### Participantes
 
-Entradas, saídas, participantes e produtos de informação
+- **MEI/empreendedor:** fornece as informações necessárias para o cadastro e corrige eventuais dados inválidos.
+- **Bot do WhatsApp Business:** conduz a conversa, solicita as informações do produto e apresenta mensagens de retorno quando o cadastro é realizado por esse canal.
+- **Aplicativo/sistema:** recebe e valida os dados, registra o produto e disponibiliza suas informações para consulta.
+- **Mecanismo de armazenamento:** mantém os dados cadastrados para que possam ser consultados e utilizados nos demais processos da solução.
 
-| Processo | Entradas | Saídas | Onde acontece | Participantes | Produtos de informação |
-|---|---|---|---|---|---|
-| Cadastro de produtos | Nome, categoria, preço de custo, preço de venda e quantidade inicial | Produto cadastrado | Interface do aplicativo | MEI e sistema | Cadastro de produtos e estoque inicial |
-| Registro de vendas | Produto vendido, quantidade e valor da venda | Venda registrada, estoque atualizado e lucro calculado | Interface do aplicativo | MEI, cliente final e sistema | Registro de venda, saldo de estoque e resultado da operação |
-| Registro de compras e reposição | Produtos adquiridos, quantidades e dados da compra | Compra registrada e estoque atualizado | Interface do aplicativo | MEI, fornecedor e sistema | Registro de compra e saldo atualizado do estoque |
-| Geração de relatório semanal via WhatsApp | Registros de vendas e compras, dados de estoque e indicadores calculados | Relatório semanal enviado ao empreendedor | Sistema e canal WhatsApp Business | Sistema, bot de WhatsApp e MEI | Relatório de faturamento, lucro, movimentação e situação do estoque |
-| Alertas e notificações proativas | Dados de estoque, movimentações de produtos e indicadores de vendas | Notificações enviadas ao empreendedor | Sistema e canal WhatsApp Business | Sistema, bot de WhatsApp e MEI | Alertas de estoque baixo, produtos parados e queda nas vendas |
+#### Evento de início
 
-#### Participantes do processos
-Os participantes identificados no levantamento são:
+O MEI decide cadastrar um novo produto ou material e inicia a operação pelo aplicativo ou pelo WhatsApp Business.
 
-MEI/empreendedor: usuário principal, responsável por cadastrar produtos, registrar vendas e compras e acompanhar as informações do negócio.
+#### Tarefas do processo
 
-Cliente final: participa das operações comerciais ao realizar compras, gerando os dados necessários para o registro das vendas.
+1. Escolher o canal de cadastro.
+2. Acessar a área de produtos do aplicativo ou iniciar a conversa com o bot.
+3. Informar o nome, a categoria, o preço de custo, o preço de venda e a quantidade inicial.
+4. Enviar os dados para validação.
+5. Verificar se as informações estão completas e válidas.
+6. Solicitar a correção dos dados quando forem identificados erros.
+7. Registrar o produto quando todas as informações estiverem válidas.
+8. Confirmar o cadastro e disponibilizar o produto para consulta.
 
-Fornecedor: fornece produtos e materiais adquiridos pelo MEI, originando as informações de entrada e reposição de estoque.
+#### Evento de fim
 
-Aplicativo/sistema: organiza os dados registrados, atualiza o estoque, calcula indicadores financeiros e identifica situações que exigem atenção.
+O produto é registrado com sucesso e fica disponível para consulta no aplicativo e utilização nos processos seguintes.
 
-Bot de WhatsApp Business: atua como canal de comunicação, enviando relatórios semanais e alertas proativos ao empreendedor.
-Os processos produzem informações que precisam ser armazenadas e relacionadas para permitir o funcionamento integrado da solução. Entre os principais produtos de informação estão os cadastros de produtos, os registros de vendas e compras, os saldos de estoque, os indicadores financeiros, os relatórios semanais e as notificações.
+#### Produto final
 
-#### Produtos de Informação e Relação com Arquitetura de softaware
+Produto ou material cadastrado, contendo nome, categoria, preço de custo, preço de venda e quantidade inicial em estoque.
+#### 3.3.1.1 Modelagem BPMN
 
-Essas informações orientam a futura organização dos dados do sistema, incluindo entidades como Produto, Venda, Item de Venda, Compra, Item de Compra e Fornecedor, além dos dados necessários para gerar relatórios e alertas. Os relacionamentos definitivos e os atributos de cada entidade deverão ser estabelecidos conforme as regras de negócio e os requisitos funcionais do projeto.
+![ BPMN do PROCESSO 1: Cadastro de Produtos](/docs/images/Cadastro%20de%20Produto%20BPM.jpg)
 
-A definição dos processos também permite identificar os usuários que interagem com o sistema e as informações que cada operação precisa receber e produzir. Como o projeto possui a restrição de não desenvolver um módulo de backend próprio, a implementação deverá respeitar o escopo acadêmico definido pelo grupo, sem pressupor uma arquitetura técnica que contrarie essa limitação.
+#### 3.3.1.2 Detalhamento das atividades do usuário (user tasks)
 
+#### Detalhamento das atividades
 
+As atividades do usuário representam as interações realizadas pelo MEI durante o processo de cadastro de produtos e materiais. Conforme o modelo BPMN apresentado, essas atividades envolvem a seleção da opção de cadastro no aplicativo, o fornecimento dos dados do produto e a correção das informações quando o sistema identifica erros.
 
+O cadastro poderá ser iniciado pelo aplicativo ou pelo bot do WhatsApp Business. As atividades descritas a seguir consideram os campos necessários para o cadastro e os comandos que direcionam o fluxo para as próximas etapas do processo.
 
+**Nome da atividade 1 — Selecionar a opção "Cadastrar produto"**
 
-### 3.2. Descrição geral da proposta (Modelagem TO BE)
+Esta atividade permite que o MEI acesse a funcionalidade de cadastro de produtos e materiais pela interface do aplicativo.
 
-A solução proposta é um aplicativo de gestão financeira e de estoque voltado a Microempreendedores Individuais (MEIs), integrado ao WhatsApp Business para o envio automático de relatórios e alertas sobre a situação do negócio.
+| **Campo**          | **Tipo**        | **Restrições**                                           | **Valor default**           |
+| ---                | ---             | ---                                                      | ---                         |
+| Opção de cadastro  | Seleção única   | Deve permitir selecionar a opção "Cadastrar produto"     | Nenhuma opção selecionada   |
 
-Ela substitui registros manuais em cadernos, anotações dispersas no celular e controles feitos apenas de memória por processos digitais simples, rápidos e integrados. No aplicativo, o empreendedor cadastra produtos e materiais, registra vendas e compras e acompanha as movimentações. Com base nesses registros, o sistema atualiza o estoque, calcula indicadores financeiros e identifica situações que exigem atenção.
-
-O bot de WhatsApp Business complementa o aplicativo com relatórios semanais e notificações proativas sobre estoque baixo, produtos sem movimentação e quedas relevantes nas vendas. Assim, o acompanhamento do negócio deixa de depender exclusivamente de o usuário abrir o aplicativo para consultar informações importantes.
-
-#### Gargalos do AS IS e melhorias propostas no TO BE
-
-No cenário atual (AS IS), o controle financeiro e de estoque é feito manualmente, em cadernos, anotações no celular ou de memória. Isso dificulta a consolidação das informações, aumenta o risco de erros e transforma o acompanhamento do negócio em mais uma tarefa na rotina. No modelo TO BE, esses controles passam a ser digitais e integrados, com atualização automática de dados, geração de indicadores e envio de notificações.
-
-| Gargalo do cenário atual (AS IS) | Solução proposta (TO BE) | Oportunidade de melhoria |
-|---|---|---|
-| Cadastro e controle de produtos em anotações dispersas | Centralizar o cadastro de produtos e materiais no aplicativo | Facilitar a consulta e a organização dos produtos |
-| Registro manual de vendas, sujeito a esquecimentos | Registro rápido de vendas com atualização automática do estoque | Reduzir retrabalho, erros de registro e divergências de quantidade |
-| Compras e reposições sem controle sistemático | Registro de compras com atualização automática do estoque | Melhorar a visibilidade dos produtos disponíveis e das necessidades de reposição |
-| Dificuldade para calcular faturamento e lucro | Consolidação dos registros e cálculo automático dos indicadores | Facilitar a compreensão dos resultados e apoiar decisões |
-| Necessidade de abrir aplicativos ou conferir anotações para acompanhar o negócio | Envio de relatórios semanais pelo WhatsApp Business | Reduzir o esforço de acompanhamento do desempenho |
-| Falta de percepção antecipada de problemas no estoque ou nas vendas | Alertas proativos sobre situações críticas | Permitir que o empreendedor identifique problemas e aja com antecedência |
-
-#### Limites da Solução 
-Apesar dos benefícios, a solução tem limites que precisam ser considerados no desenvolvimento e no uso do sistema:
-
- - Dependência dos registros realizados: a qualidade dos indicadores e das informações de estoque depende do cadastro correto dos produtos e do registro das vendas e compras. Operações não registradas podem gerar divergência entre o estoque real e o estoque informado pelo sistema.
- - Escopo funcional limitado: o produto mínimo viável (MVP) atende às três dores centrais identificadas no levantamento:        desorganização financeira, falta de controle de estoque e sobrecarga mental com registros manuais. Não se pretende cobrir todas as necessidades administrativas de uma empresa.
- - Dependência do WhatsApp Business: o envio de relatórios e alertas depende da disponibilidade do canal e das condições necessárias para a integração.
- - Necessidade de simplicidade: a interface deve priorizar operações rápidas e objetivas, evitando funcionalidades complexas que aumentem a curva de aprendizado do público-alvo.
- - Restrição técnica e acadêmica: por definição do grupo, o projeto não terá módulo de backend próprio, e a implementação deve se ater a essa limitação e às tecnologias disponíveis para a entrega acadêmica.
- - Limites dos indicadores: os resultados são calculados a partir dos dados registrados. Os relatórios não substituem uma análise contábil completa nem garantem, isoladamente, decisões comerciais corretas.
+| **Comandos**       | **Destino**                | **Tipo** |
+| ---                | ---                        | ---      |
+| Cadastrar produto  | Informar dados do produto  | default  |
 
 
+**Nome da atividade 2 — Informar dados do produto**
 
-### 3.3. Modelagem dos processos
+Esta atividade permite que o MEI forneça as informações necessárias para cadastrar um produto ou material. A interação poderá ocorrer pelo formulário do aplicativo ou pela conversa com o bot do WhatsApp Business.
 
-![PROCESSO 1 - Cadastro de Produtos e Materiais](/docs/images/BPMN_%20Cadastro%20de%20Produtos%20e%20Materiais%20(to-be)%20-%20Quadro%20branco%20-%20Google%20Chrome%2009_10_2026%2017_04_17.png)
+| **Campo**                      | **Tipo**        | **Restrições**                                                   | **Valor default**            |
+| ---                            | ---             | ---                                                              | ---                          |
+| Nome do produto/material       | Caixa de texto  | Obrigatório; não pode conter apenas espaços                      | Vazio                        |
+| Categoria                      | Seleção única   | Obrigatória; deve corresponder a uma categoria disponível        | Nenhuma categoria selecionada |
+| Preço de custo                 | Número          | Obrigatório; deve ser maior ou igual a zero                      | Vazio                        |
+| Preço de venda                 | Número          | Obrigatório; deve ser maior ou igual a zero                      | Vazio                        |
+| Quantidade inicial em estoque  | Número          | Obrigatória; deve ser um número inteiro maior ou igual a zero    | 0                            |
 
-![PROCESSO 2 - Registro de compra](/docs/images/Registro%20de%20compras.png)
+| **Comandos**  | **Destino**     | **Tipo** |
+| ---           | ---             | ---      |
+| Enviar dados  | Validar dados   | default  |
 
-![PROCESSO 3 - Registro de Vendas](/docs/images/Registro%20de%20vendas.png)
+Após o envio, o sistema verifica se as informações estão completas e atendem às regras de validação definidas para o cadastro. Se forem identificados erros, o processo segue para a atividade de correção. Caso os dados sejam válidos, o sistema prossegue para o registro do produto.
 
-![PROCESSO 4 - Relatorio Semanl via WhatsApp](/docs/images/relatorio%20semanal%20via%20whatsApp.png)
+
+**Nome da atividade 3 — Corrigir as informações e reenviar**
+
+Esta atividade é executada quando o sistema identifica informações ausentes ou inválidas durante a validação. O MEI recebe uma mensagem indicando os problemas encontrados, corrige os campos necessários e envia novamente as informações para uma nova validação.
+
+| **Campo**                      | **Tipo**        | **Restrições**                                                        | **Valor default**           |
+| ---                            | ---             | ---                                                                   | ---                         |
+| Mensagem de erro               | Área de texto   | Exibida pelo sistema; deve indicar os dados que precisam de correção  | Mensagem gerada pelo sistema |
+| Nome do produto/material       | Caixa de texto  | Obrigatório; não pode conter apenas espaços                           | Último valor informado      |
+| Categoria                      | Seleção única   | Obrigatória; deve corresponder a uma categoria disponível             | Última categoria informada  |
+| Preço de custo                 | Número          | Obrigatório; deve ser maior ou igual a zero                           | Último valor informado      |
+| Preço de venda                 | Número          | Obrigatório; deve ser maior ou igual a zero                           | Último valor informado      |
+| Quantidade inicial em estoque  | Número          | Obrigatória; deve ser um número inteiro maior ou igual a zero         | Último valor informado      |
+
+| **Comandos**                     | **Destino**     | **Tipo** |
+| ---                              | ---             | ---      |
+| Reenviar informações corrigidas  | Validar dados   | default  |
+
+Após o reenvio, o sistema realiza uma nova validação. Se os dados continuarem inválidos, o MEI deverá corrigir as informações novamente. Se estiverem corretos, o produto será registrado e ficará disponível para consulta no aplicativo.
+### 3.4 Wireframe
+
+![ Wireframe do PROCESSO 1: Cadastro de Produtos](/docs/images/Wireframes%20do%20Cadastro%20do%20Produtos.png)
