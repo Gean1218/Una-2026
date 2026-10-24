@@ -114,3 +114,101 @@ Após o reenvio, o sistema realiza uma nova validação. Se os dados continuarem
 ### 3.4 Wireframe
 
 ![ Wireframe do PROCESSO 1: Cadastro de Produtos](/docs/images/Wireframes%20do%20Cadastro%20do%20Produtos.png)
+
+
+
+markdown
+### 3.3. Processo 3 – Registro e Controle de Estoque 
+
+#### Descrição do processo
+O processo de registro e controle de estoque tem como objetivo permitir que o Microempreendedor Individual (MEI) atualize a quantidade de produtos ou materiais disponíveis em seu negócio, registrando novas entradas (compras de fornecedores), saídas (vendas ou perdas) e ajustes manuais de inventário. Essa rotina garante a precisão das informações e subsidia os alertas de estoque mínimo.
+O controle será realizado por meio da interface do aplicativo de gestão. A solução busca organizar a rotina do empreendedor, permitindo que ele atualize o estoque de forma prática e centralizada após uma venda ou o recebimento de mercadorias.
+
+**Onde acontece:** na interface do aplicativo de gestão. A validação e a atualização do saldo em estoque ocorrem por meio dos mecanismos utilizados pela solução. 
+
+#### Participantes
+
+- **MEI/empreendedor:**fornece os dados da movimentação (tipo de operação, produto e quantidade), realiza consultas de saldo e corrige eventuais divergências. 
+- **Aplicativo/sistema:**recebe e valida os dados, calcula o novo saldo do estoque, gera alertas de estoque mínimo e disponibiliza o histórico de movimentações. 
+- **Mecanismo de armazenamento:** mantém atualizados os saldos de estoque e registra o histórico de todas as entradas e saídas realizadas. 
+
+#### Evento de início
+
+O MEI identifica a necessidade de registrar uma movimentação de estoque (entrada, saída ou ajuste) e inicia a operação acessando o aplicativo. 
+
+
+#### Tarefas do processo
+
+1. Acessar a área de controle de estoque no aplicativo. 
+2. Informar o tipo de movimentação (entrada, saída ou ajuste), o produto e a quantidade movimentada. 
+3.Enviar os dados para validação e atualização do saldo. 
+4. Verificar se o produto existe e se a quantidade é válida (ex: saldo não pode ficar negativo em caso de saídas, conforme a regra do negócio). 
+5. Solicitar a correção dos dados ou avisar sobre saldo insuficiente quando forem identificados erros. 
+6. Atualizar o saldo de estoque no sistema quando as informações estiverem corretas. 
+7. Confirmar a operação, verificar se o saldo atingiu o limite mínimo e disponibilizar o estoque atualizado para consulta. 
+#### Evento de fim
+
+O estoque é atualizado com sucesso, o saldo é recalculado e o registro da movimentação fica disponível no histórico do aplicativo. 
+
+#### Produto final
+
+Estoque atualizado do produto ou material, contendo o novo saldo calculado, o histórico da movimentação e eventuais alertas de reposição. 
+
+
+#### 3.3.1.1 Modelagem BPMN
+
+![ BPMN do PROCESSO 1: Cadastro de Produtos](/docs/images/Cadastro%20de%20Produto%20BPM.jpg)
+
+#### 3.3.1.2 Detalhamento das atividades do usuário (user tasks)
+
+#### Detalhamento das atividades
+
+As atividades do usuário representam as interações realizadas pelo MEI durante o processo de controle de estoque. Conforme o modelo BPMN apresentado, essas atividades envolvem a seleção da opção de movimentação no menu, o fornecimento dos dados do produto e da quantidade nos campos do sistema, e a validação do saldo.
+As atividades descritas a seguir consideram os campos necessários para o lançamento das movimentações no aplicativo.
+
+**Nome da atividade 1 — Selecionar a opção "Movimentar estoque"**
+
+Esta atividade permite que o MEI acesse a funcionalidade de controle de estoque diretamente pela interface do aplicativo. 
+
+| **Campo**          | **Tipo**        | **Restrições**                                           | **Valor default**           |
+| ---                | ---             | ---                                                      | ---                         |
+| Tipo de operação   | Seleção única   | Deve permitir selecionar entre Entrada, Saída ou Ajuste      | Nenhuma opção selecionada   |
+
+| **Comandos**       | **Destino**                | **Tipo** |
+| ---                | ---                        | ---      |
+| Prosseguir para lançamento   | Informar dados da movimentação   | default  |
+
+
+**Nome da atividade 2 — Informar dados da movimentação **
+
+Esta atividade permite que o MEI indique, através do formulário do sistema, qual produto terá o estoque alterado e qual a quantidade correspondente à operação. 
+
+| **Campo**                      | **Tipo**        | **Restrições**                                                   | **Valor default**            |
+| ---                            | ---             | ---                                                              | ---                          |
+| Produto / Material        | Seleção única   |Obrigatório; deve corresponder a um produto já cadastrado                       | Nenhum produto selecionado                       |
+| Quantidade movimentada                       | Número    | Obrigatório; deve ser um número inteiro maior que zero         |Vazio  |
+| Motivo / Observação (Opcional)                  | Caixa de texto           | Opcional; texto livre para detalhar o ajuste ou perda                       | Vazio                        |
+
+| **Comandos**  | **Destino**     | **Tipo** |
+| ---           | ---             | ---      |
+| Enviar movimentação   | Validar estoque e saldo    | default  |
+
+Após o envio, o sistema verifica se a quantidade informada é válida e, no caso de saídas, se há saldo suficiente em estoque. Se houver divergências ou saldo insuficiente, o processo segue para a atividade de correção. Caso os dados estejam corretos, o saldo é atualizado automaticamente. 
+
+
+**Nome da atividade 3 — Corrigir dados ou quantidade da movimentação **
+
+Esta atividade é executada quando o sistema identifica inconsistências na tentativa de movimentação (como tentar retirar mais produtos do que o saldo atual ou informar valores inválidos). O MEI visualiza a mensagem de erro na tela, ajusta as informações no formulário e reenvia para validação. 
+
+| **Campo**                      | **Tipo**        | **Restrições**                                                        | **Valor default**           |
+| ---                            | ---             | ---                                                                   | ---                         |
+| Mensagem de erro / Alerta               | Área de texto   |Exibida pelo sistema; indica saldo insuficiente ou dado inválido   | Mensagem gerada pelo sistema |
+| Produto / Material        | Seleção única   | Obrigatório; produto selecionado anteriormente                            | Último valor informado      |
+| Nova quantidade informada                     | Número    | Obrigatório; compatível com o saldo disponível (para saídas)              | Último valor informado   |
+
+| **Comandos**                     | **Destino**     | **Tipo** |
+| ---                              | ---             | ---      |
+|Reenviar dados corrigidos   | Validar estoque e saldo    | default  |
+
+Após o reenvio, o sistema realiza uma nova validação. Estando os dados corretos, o estoque é atualizado com sucesso e a operação é concluída no sistema. 
+### 3.4 Wireframe
