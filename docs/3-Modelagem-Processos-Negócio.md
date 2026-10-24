@@ -128,8 +128,8 @@ O controle será realizado por meio da interface do aplicativo de gestão. A sol
 
 #### Participantes
 
-- **MEI/empreendedor:**fornece os dados da movimentação (tipo de operação, produto e quantidade), realiza consultas de saldo e corrige eventuais divergências. 
-- **Aplicativo/sistema:**recebe e valida os dados, calcula o novo saldo do estoque, gera alertas de estoque mínimo e disponibiliza o histórico de movimentações. 
+- **MEI/empreendedor:** fornece os dados da movimentação (tipo de operação, produto e quantidade), realiza consultas de saldo e corrige eventuais divergências. 
+- **Aplicativo/sistema:** recebe e valida os dados, calcula o novo saldo do estoque, gera alertas de estoque mínimo e disponibiliza o histórico de movimentações. 
 - **Mecanismo de armazenamento:** mantém atualizados os saldos de estoque e registra o histórico de todas as entradas e saídas realizadas. 
 
 #### Evento de início
@@ -157,7 +157,7 @@ Estoque atualizado do produto ou material, contendo o novo saldo calculado, o hi
 
 #### 3.3.1.1 Modelagem BPMN
 
-![ BPMN do PROCESSO 1: Cadastro de Produtos](/docs/images/Cadastro%20de%20Produto%20BPM.jpg)
+(falta fazer a imagem)
 
 #### 3.3.1.2 Detalhamento das atividades do usuário (user tasks)
 
@@ -179,7 +179,7 @@ Esta atividade permite que o MEI acesse a funcionalidade de controle de estoque 
 | Prosseguir para lançamento   | Informar dados da movimentação   | default  |
 
 
-**Nome da atividade 2 — Informar dados da movimentação **
+**Nome da atividade 2 — Informar dados da movimentação**
 
 Esta atividade permite que o MEI indique, através do formulário do sistema, qual produto terá o estoque alterado e qual a quantidade correspondente à operação. 
 
@@ -196,7 +196,7 @@ Esta atividade permite que o MEI indique, através do formulário do sistema, qu
 Após o envio, o sistema verifica se a quantidade informada é válida e, no caso de saídas, se há saldo suficiente em estoque. Se houver divergências ou saldo insuficiente, o processo segue para a atividade de correção. Caso os dados estejam corretos, o saldo é atualizado automaticamente. 
 
 
-**Nome da atividade 3 — Corrigir dados ou quantidade da movimentação **
+**Nome da atividade 3 — Corrigir dados ou quantidade da movimentação**
 
 Esta atividade é executada quando o sistema identifica inconsistências na tentativa de movimentação (como tentar retirar mais produtos do que o saldo atual ou informar valores inválidos). O MEI visualiza a mensagem de erro na tela, ajusta as informações no formulário e reenvia para validação. 
 
@@ -212,3 +212,4 @@ Esta atividade é executada quando o sistema identifica inconsistências na tent
 
 Após o reenvio, o sistema realiza uma nova validação. Estando os dados corretos, o estoque é atualizado com sucesso e a operação é concluída no sistema. 
 ### 3.4 Wireframe
+(falta fazer o wireframe)
