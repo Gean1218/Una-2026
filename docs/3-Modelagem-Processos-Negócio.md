@@ -157,7 +157,8 @@ Estoque atualizado do produto ou material, contendo o novo saldo calculado, o hi
 
 #### 3.3.1.1 Modelagem BPMN
 
-(falta fazer a imagem)
+<img width="1600" height="955" alt="image" src="https://github.com/user-attachments/assets/bb3bbb80-cc82-46ee-99ad-884c1e42fcb7" />
+
 
 #### 3.3.1.2 Detalhamento das atividades do usuário (user tasks)
 
@@ -212,4 +213,5 @@ Esta atividade é executada quando o sistema identifica inconsistências na tent
 
 Após o reenvio, o sistema realiza uma nova validação. Estando os dados corretos, o estoque é atualizado com sucesso e a operação é concluída no sistema. 
 ### 3.4 Wireframe
-(falta fazer o wireframe)
+<img width="765" height="1024" alt="image" src="https://github.com/user-attachments/assets/f6a0ea6e-a603-4f26-a54e-14ead1ead4f2" />
+
