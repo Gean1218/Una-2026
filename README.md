@@ -4,7 +4,7 @@
 
 `Aplicações para Processos de Negócios`
 
-`2º Semestre`
+`4º Semestre`
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
 
