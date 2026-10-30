@@ -5,33 +5,116 @@
 ## 4.1. Arquitetura da solução
 
 
-......  COLOQUE AQUI O SEU TEXTO E O DIAGRAMA DE ARQUITETURA .......
+![Diagrama da arquitetura da solução](./images/Arquitetura_da_Solucao_to_be.png)
 
- Inclua um diagrama da solução e descreva os módulos e as tecnologias
- que fazem parte da solução. Discorra sobre o diagrama.
- 
- **Exemplo do diagrama de Arquitetura**:
- 
- ![Exemplo de Arquitetura](./images/arquitetura-exemplo.png)
+A solução possui dois canais de acesso: o **Aplicativo Web (PWA)**, utilizado
+para cadastrar produtos, registrar vendas e compras e consultar o estoque, e o
+**WhatsApp Business**, utilizado para receber relatórios, alertas e realizar
+consultas. Os dois canais compartilham as mesmas regras de negócio e os mesmos
+dados.
+
+Como o projeto não terá um backend próprio, o **Supabase (BaaS — Backend as a
+Service)** será utilizado como camada de aplicação, fornecendo autenticação e
+**API REST**. O **PostgreSQL** será o banco de dados e armazenará usuários, produtos, vendas, compras e
+movimentações de estoque. Suas regras de negócio, como impedir vendas acima do
+saldo e atualizar o estoque após uma venda ou compra, serão implementadas por
+meio de **triggers**, **views** e políticas de segurança **RLS (Row Level
+Security)**.
+
+As **Edge Functions** receberão as mensagens da **WhatsApp Cloud API**,
+interpretarão as solicitações e consultarão ou atualizarão o banco. O
+**pg_cron** executará a rotina do relatório semanal, enquanto as **triggers**
+poderão disparar alertas quando o estoque atingir o nível mínimo. Os relatórios
+e alertas serão enviados por **templates aprovados pela Meta**. Dessa forma, a
+arquitetura centraliza os dados e as regras da solução, mantém a consistência
+entre os canais e respeita a restrição de não desenvolver um backend próprio.
+
+#### Módulos e tecnologias da solução
+
+- **Aplicativo Web (PWA):** cadastro de produtos, registro de vendas e compras
+  e consulta do estoque.
+- **WhatsApp Business:** envio de relatórios, alertas e realização de consultas.
+- **Supabase (BaaS):** autenticação e disponibilização da API da aplicação.
+- **API REST:** comunicação entre o aplicativo e os serviços do Supabase.
+- **PostgreSQL:** armazenamento de usuários, produtos, vendas, compras e
+  movimentações de estoque.
+- **Triggers e views:** aplicação das regras de negócio, atualização do estoque
+  e cálculo de indicadores financeiros.
+- **RLS (Row Level Security):** controle de acesso aos dados de cada MEI.
+- **Edge Functions:** processamento de mensagens, regras e integrações.
+- **WhatsApp Cloud API:** comunicação oficial com o WhatsApp Business.
+- **pg_cron:** execução programada do relatório semanal.
+- **Templates da Meta:** padronização dos relatórios e alertas enviados
+  proativamente.
  
 
 ### 4.2. Protótipos de telas
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
-Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a>.
-A partir das atividades de usuário identificadas na seção anterior, elabore o protótipo de tela de cada uma delas.
-![Exemplo de Wireframe](images/wireframe-example.png)
+O protótipo foi desenvolvido com foco em uma interface simples, responsiva e
+mobile-first, adequada para MEIs com pouca familiaridade tecnológica. A
+navegação utiliza um menu inferior com as opções **Início**, **Estoque**,
+**Vender**, **Relatórios** e **Mais**, facilitando o acesso às funções
+principais do sistema.
 
-São protótipos usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante do layout de elementos fundamentais na interface.
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
+O protótipo contempla as seguintes telas:
+
+- **Dashboard:** apresenta faturamento, lucro estimado, quantidade de vendas,
+  produtos cadastrados, estoque baixo, produtos sem movimentação e ações rápidas
+  para registrar venda ou compra.
+- **Estoque:** permite buscar produtos, filtrar por categoria e visualizar o
+  saldo, o estoque mínimo e a situação de cada item.
+- **Registrar venda:** permite selecionar o produto, informar a quantidade e o
+  valor da venda, visualizar o lucro estimado e finalizar a operação.
+- **Movimentação:** permite registrar entradas, saídas e ajustes, exibindo o
+  saldo atual e o novo saldo após a operação.
+- **Relatórios:** apresenta faturamento, lucro, vendas, compras, produtos mais
+  vendidos e produtos parados, com filtros por semana, mês ou período
+  personalizado.
+- **Configurações:** reúne opções para editar os dados do negócio, configurar
+  estoque mínimo, relatórios, alertas e o número de WhatsApp.
+- **WhatsApp:** representa o recebimento de relatórios semanais, alertas de
+  estoque baixo e confirmações de vendas.
+
+As telas atendem aos requisitos de cadastro e controle de estoque, registro de
+vendas e compras, cálculo de indicadores e envio de informações pelo WhatsApp.
+Os botões de ação rápida, os campos objetivos e os indicadores visuais foram
+utilizados para reduzir o tempo de registro e a sobrecarga mental do MEI.
+
+#### Telas do protótipo
+
+**Dashboard**
+
+![Tela inicial do dashboard](./images/prototipo-dashboard-visao-geral.png)
+
+**Estoque**
+
+![Tela de controle de estoque](./images/prototipo-estoque.png)
+
+**Registro de venda**
+
+![Tela de registro de venda](./images/prototipo-registrar-venda.png)
+
+**Movimentação de estoque**
+
+![Tela de movimentação de estoque](./images/prototipo-movimentacao.png)
+
+**Relatório semanal**
+
+![Tela de relatório semanal](./images/prototipo-relatorios-semana.png)
+
+**Relatório mensal**
+
+![Tela de relatório mensal](./images/prototipo-relatorios-mes.png)
+
+**Configurações**
+
+![Tela de configurações](./images/prototipo-configuracoes.png)
+
+**WhatsApp**
+
+![Tela de mensagens do WhatsApp](./images/prototipo-whatsapp.png)
+
+**Link para o protótipo no Figma:** [Acessar protótipo](COLE_AQUI_O_LINK_DO_FIGMA)
 
 
 ## Diagrama de Classes
@@ -145,4 +228,3 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 | Front end      | HTML+CSS+JS     |
 | Back end       | Java SpringBoot |
 | Deploy         | Github Pages    |
-
