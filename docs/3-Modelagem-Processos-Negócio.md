@@ -405,3 +405,4 @@ Após o envio da solicitação, o sistema consulta as informações corresponden
 <img width="617" height="863" alt="image" src="https://github.com/user-attachments/assets/89a99209-3fb1-49ab-8aee-f4e40384b7ce" />
 
 
+
