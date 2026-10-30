@@ -1,11 +1,10 @@
-## 3. Modelagem dos Processos de Negócio
+<img width="1774" height="887" alt="image" src="https://github.com/user-attachments/assets/2bb8fc0f-c668-4aad-af2c-170cae827007" />## 3. Modelagem dos Processos de Negócio
 
 
 > **Links Úteis**:
 > - [Modelagem de Processos AS-IS x TO-BE](https://dheka.com.br/modelagem-as-is-to-be/)
 > - [20 Dicas Práticas de Modelagem de Processos](https://dheka.com.br/20-dicas-praticas-de-modelagem-de-processos/)
 
-markdown
 ### 3.3. Processo 1 – Cadastro de Produtos e Materiais
 
 #### Descrição do processo
@@ -115,9 +114,118 @@ Após o reenvio, o sistema realiza uma nova validação. Se os dados continuarem
 
 ![ Wireframe do PROCESSO 1: Cadastro de Produtos](/docs/images/Wireframes%20do%20Cadastro%20do%20Produtos.png)
 
+### 3.3. Processo 2 – Registro de Vendas
+
+#### Descrição do processo
+
+O processo de registro de vendas tem como objetivo permitir que o Microempreendedor Individual (MEI) registre as vendas realizadas em seu negócio, informando os produtos comercializados, as respectivas quantidades e os valores da venda. Essa rotina permite manter o histórico de vendas organizado, além de atualizar automaticamente o estoque conforme os produtos vendidos.
+
+O registro será realizado por meio da interface do aplicativo de gestão. A solução busca facilitar o controle das operações comerciais do empreendedor, centralizando as informações das vendas e reduzindo a necessidade de atualizações manuais do estoque.
+
+**Onde acontece:** na interface do aplicativo de gestão. A validação dos dados, o registro da venda e a atualização do estoque ocorrem por meio dos mecanismos utilizados pela solução.
+
+#### Participantes
+
+- **MEI/empreendedor:** informa os produtos vendidos, suas respectivas quantidades e valores, além de corrigir eventuais inconsistências identificadas durante o registro.
+- **Aplicativo/sistema:** recebe e valida os dados da venda, verifica as informações fornecidas, registra a operação, atualiza o estoque e confirma a conclusão do registro.
+- **Banco de dados:** armazena as informações das vendas realizadas e mantém os saldos de estoque atualizados conforme os produtos comercializados.
+
+#### Evento de início
+
+O MEI realiza uma venda e identifica a necessidade de registrá-la no aplicativo, iniciando o processo ao acessar a área de Vendas.
+
+#### Tarefas do processo
+
+1. Acessar a área de Vendas do aplicativo.
+2. Selecionar a opção "Registrar venda".
+3. Informar os produtos comercializados, suas respectivas quantidades e os valores da venda.
+4. Enviar os dados para validação pelo sistema.
+5. Verificar se as informações fornecidas são válidas e se os produtos estão cadastrados e possuem quantidade suficiente em estoque.
+6. Informar os erros encontrados quando forem identificadas inconsistências, permitindo que o MEI corrija as informações e reenvie os dados.
+7. Registrar a venda e atualizar automaticamente o estoque quando todas as informações estiverem corretas.
+8. Confirmar o registro da venda e disponibilizar as informações atualizadas no aplicativo.
+
+#### Evento de fim
+
+A venda é registrada com sucesso, as informações são armazenadas no banco de dados e o estoque é atualizado de acordo com as quantidades comercializadas. O registro fica disponível para consulta no aplicativo.
+
+#### Produto final
+
+Venda registrada no sistema, contendo os produtos comercializados, suas respectivas quantidades e valores, além do estoque atualizado e do histórico da operação.
+
+#### 3.3.1.1 Modelagem BPMN
+
+<img width="1774" height="887" alt="image" src="https://github.com/user-attachments/assets/a5e1c4e0-de57-44bc-96ff-c02377a84a6e" />
 
 
-markdown
+#### 3.3.1.2 Detalhamento das atividades do usuário (user tasks)
+
+#### Detalhamento das atividades
+
+As atividades do usuário representam as interações realizadas pelo MEI durante o processo de registro de vendas. Conforme o modelo BPMN apresentado, essas atividades envolvem o acesso à área de Vendas, a seleção da opção de registro, o preenchimento das informações referentes aos produtos comercializados e a correção de eventuais erros identificados pelo sistema.
+
+As atividades descritas a seguir consideram os campos necessários para o lançamento das vendas no aplicativo.
+
+**Nome da atividade 1 — Acessar a área de Vendas do Aplicativo**
+
+Esta atividade permite que o MEI acesse a funcionalidade de registro de vendas diretamente pela interface do aplicativo, iniciando o processo de lançamento de uma nova venda.
+
+| **Campo** | **Tipo** | **Restrições** | **Valor default** |
+| --- | --- | --- | --- |
+| Área de acesso | Navegação / Menu | Deve permitir acessar a área de Vendas do aplicativo | Tela inicial do aplicativo |
+
+| **Comandos** | **Destino** | **Tipo** |
+| --- | --- | --- |
+| Acessar Vendas | Selecionar a opção "Registrar venda" | default |
+
+**Nome da atividade 2 — Selecionar a opção "Registrar venda"**
+
+Esta atividade permite que o MEI selecione a funcionalidade de registro de vendas disponível na área de Vendas, direcionando-o para o formulário de lançamento de uma nova operação.
+
+| **Campo** | **Tipo** | **Restrições** | **Valor default** |
+| --- | --- | --- | --- |
+| Opção de operação | Seleção única | Deve permitir selecionar a opção "Registrar venda" | Nenhuma opção selecionada |
+
+| **Comandos** | **Destino** | **Tipo** |
+| --- | --- | --- |
+| Registrar venda | Informar produtos, quantidades e valores da venda | default |
+
+**Nome da atividade 3 — Informar produtos, quantidades e valores da venda**
+
+Esta atividade permite que o MEI informe, por meio do formulário do sistema, quais produtos foram comercializados, suas respectivas quantidades e os valores correspondentes à venda.
+
+| **Campo** | **Tipo** | **Restrições** | **Valor default** |
+| --- | --- | --- | --- |
+| Produto | Seleção única | Obrigatório; deve corresponder a um produto já cadastrado | Nenhum produto selecionado |
+| Quantidade vendida | Número | Obrigatório; deve ser um número inteiro maior que zero e não pode ultrapassar o saldo disponível em estoque | Vazio |
+| Valor da venda | Número / Monetário | Obrigatório; deve ser um valor maior que zero | Vazio |
+
+| **Comandos** | **Destino** | **Tipo** |
+| --- | --- | --- |
+| Enviar dados da venda | Validar dados | default |
+
+Após o envio, o sistema verifica se as informações fornecidas são válidas, incluindo a existência dos produtos cadastrados, a quantidade disponível em estoque e os valores informados. Caso sejam identificadas inconsistências, o sistema apresenta os erros encontrados e direciona o processo para a correção das informações. Caso os dados estejam corretos, a venda é registrada e o estoque é atualizado automaticamente.
+
+**Nome da atividade 4 — Corrigir as informações e reenviar**
+
+Esta atividade é executada quando o sistema identifica inconsistências durante a validação dos dados da venda. O MEI visualiza as mensagens de erro apresentadas pelo aplicativo, corrige as informações necessárias e reenvia os dados para uma nova validação.
+
+| **Campo** | **Tipo** | **Restrições** | **Valor default** |
+| --- | --- | --- | --- |
+| Mensagem de erro | Área de texto | Exibida pelo sistema; deve indicar as informações inválidas ou os problemas encontrados na venda | Mensagem gerada pelo sistema |
+| Produto | Seleção única | Obrigatório; deve corresponder a um produto cadastrado | Último valor informado |
+| Quantidade vendida | Número | Obrigatório; deve ser um número inteiro maior que zero e compatível com o saldo disponível em estoque | Último valor informado |
+| Valor da venda | Número / Monetário | Obrigatório; deve ser um valor maior que zero | Último valor informado |
+
+| **Comandos** | **Destino** | **Tipo** |
+| --- | --- | --- |
+| Reenviar informações corrigidas | Validar dados | default |
+
+Após o reenvio, o sistema realiza uma nova validação das informações. Caso os dados estejam corretos, a venda é registrada, o estoque é atualizado e o sistema confirma a conclusão da operação. Caso ainda existam inconsistências, o processo retorna para a correção das informações.
+
+### 3.4. Wireframe
+
+
 ### 3.3. Processo 3 – Registro e Controle de Estoque 
 
 #### Descrição do processo
