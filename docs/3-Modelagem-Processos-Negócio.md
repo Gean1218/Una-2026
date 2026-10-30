@@ -215,3 +215,13 @@ Após o reenvio, o sistema realiza uma nova validação. Estando os dados corret
 ### 3.4 Wireframe
 <img width="765" height="1024" alt="image" src="https://github.com/user-attachments/assets/f6a0ea6e-a603-4f26-a54e-14ead1ead4f2" />
 
+### 3.3. Processo 4 – Geração de Relatórios via WhatsApp
+
+#### Descrição do processo
+O processo de Geração de Relatórios via WhatsApp consiste na extração, consolidação e envio automatizado ou sob demanda de relatórios gerenciais e operacionais diretamente para os gestores ou equipes por meio do aplicativo WhatsApp. Ele acontece no sistema corporativo integrado (módulo de relatórios) em conjunto com a API oficial do WhatsApp Business. Participam deste fluxo o Gestor/Usuário solicitante, o Sistema Automatizado e o Servidor/API de Mensageria. O início ocorre a partir da solicitação do relatório pelo gestor (via sistema ou comando no chat) ou por disparo agendado via rotina automática. O fim se dá com a confirmação de entrega do relatório em formato PDF ou planilha na conversa do WhatsApp. As principais tarefas envolvem solicitar e configurar o relatório, processar dados, gerar o arquivo, validar permissões e enviar a mensagem via WhatsApp. Os produtos gerados são o relatório consolidado (em PDF ou Excel) e a notificação enviada no WhatsApp.
+
+#### 3.3.1.1 Modelagem BPMN
+
+<img width="1600" height="955" alt="image" src="<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/28de29f3-7277-4a8f-850d-d3b271192beb" />
+" />
+
