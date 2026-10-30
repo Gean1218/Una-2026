@@ -1,5 +1,4 @@
-<img width="1774" height="887" alt="image" src="https://github.com/user-attachments/assets/2bb8fc0f-c668-4aad-af2c-170cae827007" />## 3. Modelagem dos Processos de Negócio
-
+## 3. Modelagem dos Processos de Negócio
 
 > **Links Úteis**:
 > - [Modelagem de Processos AS-IS x TO-BE](https://dheka.com.br/modelagem-as-is-to-be/)
