@@ -163,55 +163,70 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Esquema Rel
 
 #### 4.3.3 Modelo Físico
 
-Insira aqui o script de criação das tabelas do banco de dados.
 
-Veja um exemplo:
-
-<code>
-
- -- Criação da tabela Médico
-CREATE TABLE Medico (
-    MedCodigo INTEGER PRIMARY KEY,
-    MedNome VARCHAR(100)
+CREATE TABLE Empreendedor (
+    id_empreendedor INTEGER PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    telefone VARCHAR(20)
 );
 
-
--- Criação da tabela Paciente
-CREATE TABLE Paciente (
-    PacCodigo INTEGER PRIMARY KEY,
-    PacNome VARCHAR(100)
+CREATE TABLE Fornecedor (
+    id_fornecedor INTEGER PRIMARY KEY,
+    nome VARCHAR(100),
+    telefone VARCHAR(20)
 );
 
--- Criação da tabela Consulta
-CREATE TABLE Consulta (
-    ConCodigo INTEGER PRIMARY KEY,
-    MedCodigo INTEGER,
-    PacCodigo INTEGER,
-    Data DATE,
-    FOREIGN KEY (MedCodigo) REFERENCES Medico(MedCodigo),
-    FOREIGN KEY (PacCodigo) REFERENCES Paciente(PacCodigo)
+CREATE TABLE Produto (
+    id_produto INTEGER PRIMARY KEY,
+    id_empreendedor INTEGER,
+    id_fornecedor INTEGER,
+    nome VARCHAR(100),
+    categoria VARCHAR(50),
+    preco_custo DECIMAL(10,2),
+    preco_venda DECIMAL(10,2),
+    quantidade INTEGER,
+    estoque_minimo INTEGER,
+    FOREIGN KEY (id_empreendedor) REFERENCES Empreendedor(id_empreendedor),
+    FOREIGN KEY (id_fornecedor) REFERENCES Fornecedor(id_fornecedor)
 );
 
--- Criação da tabela Medicamento
-CREATE TABLE Medicamento (
-    MdcCodigo INTEGER PRIMARY KEY,
-    MdcNome VARCHAR(100)
+CREATE TABLE Venda (
+    id_venda INTEGER PRIMARY KEY,
+    id_produto INTEGER,
+    data_venda DATE,
+    quantidade INTEGER,
+    valor_total DECIMAL(10,2),
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
 );
 
--- Criação da tabela Prescricao
-CREATE TABLE Prescricao (
-    ConCodigo INTEGER,
-    MdcCodigo INTEGER,
-    Posologia VARCHAR(200),
-    PRIMARY KEY (ConCodigo, MdcCodigo),
-    FOREIGN KEY (ConCodigo) REFERENCES Consulta(ConCodigo),
-    FOREIGN KEY (MdcCodigo) REFERENCES Medicamento(MdcCodigo)
+CREATE TABLE Compra (
+    id_compra INTEGER PRIMARY KEY,
+    id_produto INTEGER,
+    id_fornecedor INTEGER,
+    data_compra DATE,
+    quantidade INTEGER,
+    valor_total DECIMAL(10,2),
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto),
+    FOREIGN KEY (id_fornecedor) REFERENCES Fornecedor(id_fornecedor)
 );
 
-</code>
+CREATE TABLE MovimentacaoEstoque (
+    id_movimentacao INTEGER PRIMARY KEY,
+    id_produto INTEGER,
+    tipo VARCHAR(20),
+    quantidade INTEGER,
+    data_movimentacao DATE,
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
+);
 
-Este script deverá ser incluído em um arquivo .sql na pasta src\bd.
-
+CREATE TABLE Relatorio (
+    id_relatorio INTEGER PRIMARY KEY,
+    id_empreendedor INTEGER,
+    tipo VARCHAR(50),
+    data_geracao DATE,
+    FOREIGN KEY (id_empreendedor) REFERENCES Empreendedor(id_empreendedor)
+);
 
 
 
