@@ -114,7 +114,7 @@ utilizados para reduzir o tempo de registro e a sobrecarga mental do MEI.
 
 ![Tela de mensagens do WhatsApp](./images/prototipo-whatsapp.png)
 
-**Link para o protótipo no Figma:** [Acessar protótipo](COLE_AQUI_O_LINK_DO_FIGMA)
+**Link para o protótipo no Figma:** [Acessar protótipo](https://www.figma.com/design/SjoPbWQOY0oFrNnij9djJn/html.to.design-%E2%80%94-by-%E2%80%B9div%E2%80%BARIOTS-%E2%80%94-Import-websites-to-Figma-designs--web-html-css---Community-?node-id=0-1&t=sctLCehfbaG3vDYs-1)
 
 
 ## Diagrama de Classes
