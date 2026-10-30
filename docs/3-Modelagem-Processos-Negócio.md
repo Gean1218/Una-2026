@@ -222,6 +222,6 @@ O processo de Geração de Relatórios via WhatsApp consiste na extração, cons
 
 #### 3.3.1.1 Modelagem BPMN
 
-<img width="1600" height="955" alt="image" src="<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/28de29f3-7277-4a8f-850d-d3b271192beb" />
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/28de29f3-7277-4a8f-850d-d3b271192beb" />
 " />
 
