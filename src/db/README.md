@@ -30,7 +30,7 @@ CREATE TABLE Venda (
     VenData DATE,
     VenValor DECIMAL(10,2)
 );
-
+ 
 CREATE TABLE Compra (
     ComId INTEGER PRIMARY KEY,
     ComData DATE,
