@@ -327,8 +327,81 @@ Após o reenvio, o sistema realiza uma nova validação. Estando os dados corret
 #### Descrição do processo
 O processo de Geração de Relatórios via WhatsApp consiste na extração, consolidação e envio automatizado ou sob demanda de relatórios gerenciais e operacionais diretamente para os gestores ou equipes por meio do aplicativo WhatsApp. Ele acontece no sistema corporativo integrado (módulo de relatórios) em conjunto com a API oficial do WhatsApp Business. Participam deste fluxo o Gestor/Usuário solicitante, o Sistema Automatizado e o Servidor/API de Mensageria. O início ocorre a partir da solicitação do relatório pelo gestor (via sistema ou comando no chat) ou por disparo agendado via rotina automática. O fim se dá com a confirmação de entrega do relatório em formato PDF ou planilha na conversa do WhatsApp. As principais tarefas envolvem solicitar e configurar o relatório, processar dados, gerar o arquivo, validar permissões e enviar a mensagem via WhatsApp. Os produtos gerados são o relatório consolidado (em PDF ou Excel) e a notificação enviada no WhatsApp.
 
+#### Participantes
+
+- **MEI/empreendedor:** solicita os relatórios, seleciona as informações desejadas, define o período de consulta e configura a frequência de recebimento, quando necessário.
+- **Aplicativo/sistema:** recebe as solicitações, consulta e consolida os dados armazenados, gera os relatórios e verifica as permissões necessárias para o envio.
+- **API do WhatsApp Business:** recebe as solicitações de envio do sistema e encaminha os relatórios e notificações para o número de WhatsApp cadastrado pelo empreendedor.
+- **Banco de dados:** armazena as informações de vendas, movimentações financeiras e estoque utilizadas na elaboração dos relatórios.
+
+#### Evento de início
+
+O MEI identifica a necessidade de acompanhar os resultados do negócio e solicita a geração de um relatório pelo aplicativo ou por meio de um comando no WhatsApp. O processo também pode ser iniciado automaticamente, conforme a programação de envios previamente configurada.
+
+#### Tarefas do processo
+
+1. Acessar a área de relatórios do aplicativo ou iniciar uma solicitação pelo WhatsApp.
+2. Selecionar o tipo de relatório desejado, o período de consulta e o formato do arquivo.
+3. Enviar a solicitação para processamento pelo sistema.
+4. Consultar e consolidar as informações necessárias no banco de dados.
+5. Gerar o relatório no formato selecionado, como PDF ou planilha.
+6. Verificar as permissões de acesso e as informações do número de WhatsApp cadastrado.
+7. Encaminhar o relatório e a notificação por meio da API do WhatsApp Business.
+8. Confirmar o envio e disponibilizar o relatório na conversa do WhatsApp do empreendedor.
+
+#### Evento de fim
+
+O relatório é gerado e encaminhado com sucesso para o WhatsApp cadastrado pelo MEI, ficando disponível para consulta e acompanhamento das informações do negócio.
+
+#### Produto final
+
+Relatório gerencial ou operacional em formato PDF ou planilha, contendo as informações solicitadas pelo MEI, acompanhado de uma notificação enviada diretamente para sua conversa no WhatsApp.
+
 #### 3.3.1.1 Modelagem BPMN
 
 <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/28de29f3-7277-4a8f-850d-d3b271192beb" />
-" />
+
+#### 3.3.1.2 Detalhamento das atividades do usuário (user tasks)
+
+#### Detalhamento das atividades
+
+As atividades do usuário representam as interações realizadas pelo MEI durante o processo de geração de relatórios via WhatsApp. Conforme o funcionamento proposto, essas atividades envolvem o acesso à funcionalidade de relatórios, a seleção das informações desejadas e a configuração dos parâmetros necessários para a geração do arquivo.
+
+As atividades descritas a seguir consideram os campos necessários para a solicitação de relatórios no aplicativo de gestão.
+
+**Nome da atividade 1 — Acessar a área de Relatórios**
+
+Esta atividade permite que o MEI acesse a funcionalidade de geração de relatórios diretamente pela interface do aplicativo, iniciando o processo de solicitação de informações sobre o negócio.
+
+| **Campo** | **Tipo** | **Restrições** | **Valor default** |
+| --- | --- | --- | --- |
+| Área de acesso | Navegação / Menu | Deve permitir acessar a área de Relatórios do aplicativo | Tela inicial do aplicativo |
+
+| **Comandos** | **Destino** | **Tipo** |
+| --- | --- | --- |
+| Acessar Relatórios | Selecionar tipo de relatório | default |
+
+**Nome da atividade 2 — Selecionar e configurar o relatório**
+
+Esta atividade permite que o MEI escolha quais informações deseja consultar, definindo o tipo de relatório, o período correspondente e o formato do arquivo que será gerado pelo sistema.
+
+| **Campo** | **Tipo** | **Restrições** | **Valor default** |
+| --- | --- | --- | --- |
+| Tipo de relatório | Seleção única | Deve permitir selecionar entre relatórios de vendas, financeiros ou de estoque | Nenhum tipo selecionado |
+| Período de consulta | Seleção / Data | Obrigatório; deve permitir definir o intervalo de datas do relatório | Período atual |
+| Formato do arquivo | Seleção única | Deve permitir selecionar entre PDF e Excel | PDF |
+| Número de WhatsApp | Número / Telefone | Obrigatório; deve corresponder a um número válido e cadastrado para recebimento | Número cadastrado |
+
+| **Comandos** | **Destino** | **Tipo** |
+| --- | --- | --- |
+| Solicitar relatório | Processar solicitação e consultar dados | default |
+
+Após o envio da solicitação, o sistema consulta as informações correspondentes no banco de dados e realiza a consolidação dos registros. Em seguida, gera o arquivo no formato selecionado e verifica se o usuário possui as permissões necessárias e se o número de WhatsApp está apto a receber o relatório. Caso as verificações sejam aprovadas, o arquivo é encaminhado para a API do WhatsApp Business, que realiza o envio da mensagem.
+
+**Observação:** quando o recebimento automático estiver configurado, o sistema poderá executar essas etapas conforme a programação definida pelo MEI, sem a necessidade de uma nova solicitação manual.
+
+### 3.4. Wireframe
+
+<img width="617" height="863" alt="image" src="https://github.com/user-attachments/assets/89a99209-3fb1-49ab-8aee-f4e40384b7ce" />
+
 
