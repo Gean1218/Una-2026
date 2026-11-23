@@ -1,0 +1,404 @@
+CRIACAO DO BANCO DE DADOS - UNA 2026
+
+Fonte analisada:
+- docs/3-Modelagem-Processos-Negocio.md
+- docs/4-Projeto-Solucao.md
+- docs/7-Indicadores.md
+- docs/images/Relacional_01.jpg
+- docs/images/modeloRelacional.jpg
+- src/db/README.md
+
+TECNOLOGIA ADOTADA
+
+A arquitetura do projeto define PostgreSQL/Supabase. Portanto, este documento
+adota PostgreSQL em vez de manter o modelo fisico do documento 4 com MySQL,
+pois as duas tecnologias nao podem ser usadas simultaneamente no mesmo banco.
+
+O banco deve ser criado no PostgreSQL do Supabase. As regras de acesso por
+MEI sao feitas por user_id/RLS. O arquivo src/db/README.md contem uma versao
+reduzida e apresenta inconsistencias: Venda nao se relaciona com Produto,
+Compra nao se relaciona com Produto e o relacionamento entre Empreendedor e
+Produto nao esta representado. O modelo abaixo corrige esses pontos.
+
+VISAO DAS CLASSES ENTIDADES
+
+Empreendedor:
+- Representa o MEI que usa o sistema.
+- E dono dos produtos, fornecedores, vendas, compras, movimentacoes e
+  relatorios.
+- Deve se relacionar com auth.users do Supabase.
+
+Fornecedor:
+- Representa a origem de mercadorias ou materiais.
+- Pode estar associado a varias compras.
+
+Produto:
+- Representa produto ou material cadastrado.
+- Guarda nome, categoria, custo, preco de venda, quantidade atual e estoque
+  minimo.
+- Cada produto pertence a um empreendedor.
+
+Venda:
+- Representa o cabecalho de uma venda.
+- Armazena data e valor total.
+- Uma venda possui varios itens, um por produto.
+
+VendaItem:
+- Resolve o relacionamento muitos-para-muitos entre Venda e Produto.
+- Guarda quantidade vendida e preco unitario no momento da venda.
+
+Compra:
+- Representa o cabecalho de uma compra de fornecedor.
+- Uma compra possui varios itens.
+
+CompraItem:
+- Resolve o relacionamento muitos-para-muitos entre Compra e Produto.
+- Guarda quantidade adquirida, custo unitario e data da compra.
+
+MovimentacaoEstoque:
+- Guarda entradas, saidas e ajustes manuais.
+- Cada movimentacao pertence a um produto e referencia o MEI.
+- A venda e a compra podem gerar movimentacoes automaticas.
+
+Relatorio:
+- Guarda parametros e estado dos relatórios solicitados pelo MEI.
+- Tipo, periodo inicial/final, formato, numero do WhatsApp e data de envio
+  permitem atender ao processo pelo aplicativo e pela integracao WhatsApp.
+
+Comportamento dos processos:
+1. Cadastro: valida os campos, cria Produto e inicia o estoque com quantidade
+   informada.
+2. Venda: cria Venda, cria VendaItem e verifica estoque suficiente. O estoque
+   diminui pela soma das quantidades vendidas.
+3. Compra: cria Compra, cria CompraItem e aumenta o estoque pelo item comprado.
+4. Movimentacao: entrada aumenta estoque, saida diminui estoque e ajuste define
+   ou recalcula a quantidade conforme a regra de negocio.
+5. Relatorio: consulta vendas, compras e movimentacoes pelo periodo e envia o
+   arquivo aprovado pelo formato configurado.
+
+SQL - MODELO FISICO POSTGRESQL
+
+create extension if not exists pgcrypto;
+
+create table empreendedor (
+    id uuid primary key default gen_random_uuid(),
+    auth_user_id uuid not null unique references auth.users(id),
+    nome text not null,
+    email text not null,
+    telefone text,
+    whatsapp text,
+    created_at timestamptz not null default now()
+);
+
+create table fornecedor (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    nome text not null,
+    telefone text,
+    created_at timestamptz not null default now()
+);
+
+create table categoria_produto (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    nome text not null,
+    unique (empreendedor_id, nome)
+);
+
+create table produto (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    categoria_id uuid references categoria_produto(id),
+    fornecedor_id uuid references fornecedor(id),
+    nome text not null check (btrim(nome) <> ''),
+    preco_custo numeric(12,2) not null default 0 check (preco_custo >= 0),
+    preco_venda numeric(12,2) not null default 0 check (preco_venda >= 0),
+    quantidade integer not null default 0 check (quantidade >= 0),
+    estoque_minimo integer not null default 0 check (estoque_minimo >= 0),
+    ativo boolean not null default true,
+    created_at timestamptz not null default now()
+);
+
+create table venda (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    data_venda timestamptz not null default now(),
+    valor_total numeric(12,2) not null default 0 check (valor_total >= 0)
+);
+
+create table venda_item (
+    id uuid primary key default gen_random_uuid(),
+    venda_id uuid not null references venda(id) on delete cascade,
+    produto_id uuid not null references produto(id),
+    quantidade integer not null check (quantidade > 0),
+    preco_unitario numeric(12,2) not null check (preco_unitario >= 0),
+    subtotal numeric(12,2) generated always as
+        (quantidade * preco_unitario) stored
+);
+
+create table compra (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    fornecedor_id uuid references fornecedor(id),
+    data_compra timestamptz not null default now(),
+    valor_total numeric(12,2) not null default 0 check (valor_total >= 0)
+);
+
+create table compra_item (
+    id uuid primary key default gen_random_uuid(),
+    compra_id uuid not null references compra(id) on delete cascade,
+    produto_id uuid not null references produto(id),
+    quantidade integer not null check (quantidade > 0),
+    custo_unitario numeric(12,2) not null check (custo_unitario >= 0),
+    subtotal numeric(12,2) generated always as
+        (quantidade * custo_unitario) stored
+);
+
+create table movimentacao_estoque (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    produto_id uuid not null references produto(id) on delete restrict,
+    tipo text not null check (tipo in ('entrada', 'saida', 'ajuste')),
+    quantidade integer not null check (quantidade > 0),
+    observacao text,
+    saldo_anterior integer,
+    saldo_novo integer,
+    data_movimentacao timestamptz not null default now()
+);
+
+create table relatorio (
+    id uuid primary key default gen_random_uuid(),
+    empreendedor_id uuid not null references empreendedor(id) on delete cascade,
+    tipo text not null check (tipo in ('vendas', 'financeiro', 'estoque')),
+    periodo_inicio date not null,
+    periodo_fim date not null,
+    formato text not null check (formato in ('PDF', 'Excel')),
+    whatsapp_destino text,
+    status text not null default 'solicitado'
+        check (status in ('solicitado', 'gerado', 'enviado', 'erro')),
+    data_solicitacao timestamptz not null default now(),
+    data_envio timestamptz,
+    check (periodo_fim >= periodo_inicio)
+);
+
+create index idx_produto_empreendedor on produto(empreendedor_id);
+create index idx_venda_empreendedor_data on venda(empreendedor_id, data_venda);
+create index idx_venda_item_produto on venda_item(produto_id);
+create index idx_compra_empreendedor_data on compra(empreendedor_id, data_compra);
+create index idx_mov_produto_data
+    on movimentacao_estoque(produto_id, data_movimentacao);
+create index idx_relatorio_empreendedor
+    on relatorio(empreendedor_id, data_solicitacao);
+
+ATUALIZACAO AUTOMATICA DO ESTOQUE
+
+create function atualizar_estoque_venda() returns trigger
+language plpgsql
+as $$
+declare
+    saldo_atual integer;
+begin
+    select quantidade into saldo_atual
+    from produto
+    where id = new.produto_id
+    for update;
+
+    if saldo_atual is null then
+        raise exception 'Produto inexistente.';
+    end if;
+
+    if saldo_atual < new.quantidade then
+        raise exception 'Quantidade indisponivel em estoque.';
+    end if;
+
+    update produto
+    set quantidade = quantidade - new.quantidade
+    where id = new.produto_id;
+
+    return new;
+end;
+$$;
+
+create trigger tg_estoque_venda
+before insert on venda_item
+for each row execute function atualizar_estoque_venda();
+
+create function atualizar_estoque_compra() returns trigger
+language plpgsql
+as $$
+begin
+    update produto
+    set quantidade = quantidade + new.quantidade
+    where id = new.produto_id;
+
+    if not found then
+        raise exception 'Produto inexistente.';
+    end if;
+
+    return new;
+end;
+$$;
+
+create trigger tg_estoque_compra
+before insert on compra_item
+for each row execute function atualizar_estoque_compra();
+
+create function registrar_movimentacao() returns trigger
+language plpgsql
+as $$
+declare
+    saldo_atual integer;
+begin
+    select quantidade into saldo_atual
+    from produto
+    where id = new.produto_id
+    for update;
+
+    if saldo_atual is null then
+        raise exception 'Produto inexistente.';
+    end if;
+
+    new.saldo_anterior := saldo_atual;
+
+    if new.tipo = 'entrada' then
+        new.saldo_novo := saldo_atual + new.quantidade;
+    elsif new.tipo = 'saida' then
+        if saldo_atual < new.quantidade then
+            raise exception 'Saldo insuficiente para movimentacao.';
+        end if;
+        new.saldo_novo := saldo_atual - new.quantidade;
+    else
+        new.saldo_novo := new.quantidade;
+    end if;
+
+    update produto
+    set quantidade = new.saldo_novo
+    where id = new.produto_id;
+
+    return new;
+end;
+$$;
+
+create trigger tg_movimentacao
+before insert on movimentacao_estoque
+for each row execute function registrar_movimentacao();
+
+SEGURANCA RLS PARA O SUPABASE
+
+alter table empreendedor enable row level security;
+alter table fornecedor enable row level security;
+alter table categoria_produto enable row level security;
+alter table produto enable row level security;
+alter table venda enable row level security;
+alter table venda_item enable row level security;
+alter table compra enable row level security;
+alter table compra_item enable row level security;
+alter table movimentacao_estoque enable row level security;
+alter table relatorio enable row level security;
+
+create policy empreendedor_proprio on empreendedor
+using (auth_user_id = auth.uid())
+with check (auth_user_id = auth.uid());
+
+create policy dados_do_empreendedor_produto on produto
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy dados_do_empreendedor_fornecedor on fornecedor
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy dados_do_empreendedor_categoria on categoria_produto
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy dados_do_empreendedor_venda on venda
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy dados_do_empreendedor_compra on compra
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy dados_do_empreendedor_movimentacao on movimentacao_estoque
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy dados_do_empreendedor_relatorio on relatorio
+using (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()))
+with check (empreendedor_id in
+    (select id from empreendedor where auth_user_id = auth.uid()));
+
+create policy venda_item_do_mei on venda_item
+using (venda_id in (
+    select v.id from venda v
+    join empreendedor e on e.id = v.empreendedor_id
+    where e.auth_user_id = auth.uid()
+));
+
+create policy compra_item_do_mei on compra_item
+using (compra_id in (
+    select c.id from compra c
+    join empreendedor e on e.id = c.empreendedor_id
+    where e.auth_user_id = auth.uid()
+));
+
+VIEWS PARA INDICADORES E ESTOQUE
+
+create view estoque_atual as
+select
+    empreendedor_id,
+    id as produto_id,
+    nome,
+    quantidade,
+    estoque_minimo,
+    case
+        when quantidade = 0 then 'sem estoque'
+        when quantidade <= estoque_minimo then 'estoque baixo'
+        else 'estoque normal'
+    end as situacao
+from produto
+where ativo = true;
+
+create view indicadores_financeiros as
+select
+    v.empreendedor_id,
+    date_trunc('day', v.data_venda)::date as data,
+    sum(vi.subtotal) as faturamento,
+    sum((vi.preco_unitario - p.preco_custo) * vi.quantidade) as lucro_estimado,
+    sum(vi.quantidade) as itens_vendidos
+from venda v
+join venda_item vi on vi.venda_id = v.id
+join produto p on p.id = vi.produto_id
+group by v.empreendedor_id, date_trunc('day', v.data_venda)::date;
+
+OBSERVACOES DE IMPLEMENTACAO
+
+- As views, triggers e RLS devem ser habilitados no Supabase apos criar as
+  tabelas.
+- Ao registrar Venda, o sistema deve calcular o valor total dos itens e criar
+  primeiro o cabecalho antes dos itens.
+- Ao registrar Compra, o sistema deve calcular o valor total dos itens e criar
+  primeiro o cabecalho antes dos itens.
+- Para ajuste de estoque, MovimentacaoEstoque.tipo='ajuste' faz a quantidade
+  informada representar o novo saldo.
+- Os itens da venda devem guardar preco_unitario para preservar o historico,
+  mesmo quando o preco de venda do produto for alterado.
+- Os itens da compra devem guardar custo_unitario para preservar o valor real
+  da compra.
+- Os nomes e tipos da tecnologia final devem ser atualizados no repositorio:
+  PostgreSQL/Supabase, nao MySQL/Java SpringBoot, se esta for a arquitetura
+  realmente aprovada.
